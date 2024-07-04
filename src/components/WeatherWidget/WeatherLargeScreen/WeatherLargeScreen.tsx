@@ -1,5 +1,4 @@
 import { Card, CardActions, CardContent, CardHeader, CardMedia, Grid, Typography } from '@mui/material'
-import { blue, blueGrey, orange } from '@mui/material/colors'
 import type React from 'react'
 
 import type { WeatherResponse } from '../../../types/common.ts'
@@ -16,9 +15,10 @@ export const WeatherLargeScreen: React.FC<Props> = ({ data }) => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#0099FF',
+        background: 'linear-gradient(to right, #0f0c29, #302b63, #24243e)',
         borderRadius: 6,
         boxShadow: 3,
+        py: 1,
       }}
     >
       <CardHeader
@@ -28,7 +28,7 @@ export const WeatherLargeScreen: React.FC<Props> = ({ data }) => {
       />
       <CardContent>
         <Grid container spacing={2}>
-          <Grid item xs={3} sx={{ textAlign: 'center' }}>
+          <Grid item xs={3} sx={{ textAlign: 'right' }}>
             <Typography variant="h6" sx={{ color: 'white', fontWeight: 600 }}>
               {data.location.country}, {data.location.name}
             </Typography>
@@ -49,7 +49,7 @@ export const WeatherLargeScreen: React.FC<Props> = ({ data }) => {
               {data.current.condition.text}
             </Typography>
           </Grid>
-          <Grid item xs={3} sx={{ textAlign: 'right' }}>
+          <Grid item xs={3} sx={{ textAlign: 'left' }}>
             <Typography variant="body1" sx={{ color: 'white', fontWeight: 600 }}>
               Precip: {data.current.precip_mm} mm
             </Typography>
