@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material'
 import type React from 'react'
 
-import type { ForecastDay } from '../../../types/common.ts'
-import { dateToDayOfWeek } from '../../../utils/utils.ts'
+import type { ForecastDay } from '../../types/common.ts'
+import { dateToDayOfWeek } from '../../utils/utils.ts'
 
 interface Props {
   forecastday: ForecastDay

@@ -1,9 +1,8 @@
-import './App.scss'
 import { Container } from '@mui/material'
 import { Suspense } from 'react'
 
-import { useIpBasedLocation } from '../../hooks/useIpBasedLocation.ts'
-import { WeatherWidget } from '../WeatherWidget/WeatherWidget.tsx'
+import { WeatherWidget } from './components/WeatherWidget/WeatherWidget.tsx'
+import { useIpBasedLocation } from './hooks/useIpBasedLocation.ts'
 
 function App() {
   const { loading, error, location } = useIpBasedLocation()

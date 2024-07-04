@@ -1,9 +1,9 @@
 import { Card, CardActions, CardContent, CardHeader, CardMedia, Grid, Typography } from '@mui/material'
 import type React from 'react'
 
-import type { WeatherResponse } from '../../../types/common.ts'
-import { formatDate } from '../../../utils/utils.ts'
-import { WeatherDay } from '../WeatherDay/WeatherDay.tsx'
+import { WeatherDay } from './WeatherDay.tsx'
+import type { WeatherResponse } from '../../types/common.ts'
+import { formatDate } from '../../utils/utils.ts'
 
 interface Props {
   data: WeatherResponse
