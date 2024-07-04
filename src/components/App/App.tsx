@@ -1,10 +1,19 @@
 import './App.scss'
+import { Container } from '@mui/material'
+import { Suspense } from 'react'
+
+import { useIpBasedLocation } from '../../hooks/useIpBasedLocation.ts'
+import { WeatherWidget } from '../WeatherWidget/WeatherWidget.tsx'
 
 function App() {
+  const { loading, error, location } = useIpBasedLocation()
+
   return (
-    <>
-      <h1 className="h1">Simple react template</h1>
-    </>
+    <Container maxWidth="md" sx={{ py: 3 }}>
+      <Suspense fallback={<p>Loading...</p>}>
+        <WeatherWidget location={location} search="Kyiv" />
+      </Suspense>
+    </Container>
   )
 }
 
