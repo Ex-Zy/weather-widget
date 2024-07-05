@@ -6,6 +6,7 @@ import { useBreakPoints } from '../../hooks/useBreakPoints.ts'
 import { useInput } from '../../hooks/useInput.ts'
 import { useWeatherForecast } from '../../hooks/useWeatherForecast.ts'
 import type { Location } from '../../types/common.ts'
+import { Loader } from '../Loader.tsx'
 
 const SearchBar = lazy(() => import('../SearchBar.tsx').then((module) => ({ default: module.SearchBar })))
 const WeatherLargeScreen = lazy(() =>
@@ -33,7 +34,7 @@ export const WeatherWidget: React.FC<Props> = ({ location }) => {
 
   const { isLargeScreen, isMediumScreen } = useBreakPoints()
 
-  if (error || loading) return <div>Loading...</div>
+  if (error || loading) return <Loader />
 
   return (
     <div className="widget">
