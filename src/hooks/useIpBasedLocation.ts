@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import type { IpLocation, Location } from '../types/common.ts'
 
@@ -10,7 +10,7 @@ export const useIpBasedLocation = () => {
     lon: 0,
   })
 
-  const fetchLocation = async () => {
+  const fetchLocation = useCallback(async () => {
     try {
       const response = await fetch('https://ipapi.co/json/')
       const data = (await response.json()) as IpLocation
@@ -25,11 +25,11 @@ export const useIpBasedLocation = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
   useEffect(() => {
     void fetchLocation()
-  }, [])
+  }, [fetchLocation])
 
   return { loading, error, location }
 }

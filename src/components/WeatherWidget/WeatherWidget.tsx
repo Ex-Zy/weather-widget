@@ -1,13 +1,21 @@
 import type React from 'react'
+import { lazy } from 'react'
 
-import { WeatherLargeScreen } from './WeatherLargeScreen.tsx'
-import { WeatherMediumScreen } from './WeatherMediumScreen.tsx'
-import { WeatherSmallScreen } from './WeatherSmallScreen.tsx'
 import { useBreakPoints } from '../../hooks/useBreakPoints.ts'
 import { useInput } from '../../hooks/useInput.ts'
 import { useWeatherForecast } from '../../hooks/useWeatherForecast.ts'
 import type { Location } from '../../types/common.ts'
-import { SearchBar } from '../SearchBar.tsx'
+
+const SearchBar = lazy(() => import('../SearchBar.tsx').then((module) => ({ default: module.SearchBar })))
+const WeatherLargeScreen = lazy(() =>
+  import('./WeatherLargeScreen.tsx').then((module) => ({ default: module.WeatherLargeScreen }))
+)
+const WeatherMediumScreen = lazy(() =>
+  import('./WeatherMediumScreen.tsx').then((module) => ({ default: module.WeatherMediumScreen }))
+)
+const WeatherSmallScreen = lazy(() =>
+  import('./WeatherSmallScreen.tsx').then((module) => ({ default: module.WeatherSmallScreen }))
+)
 
 interface Props {
   location: Location
