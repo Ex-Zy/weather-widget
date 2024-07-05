@@ -9,9 +9,7 @@ function App() {
 
   return (
     <Container maxWidth="md" sx={{ py: 3 }}>
-      <Suspense fallback={<p>Loading...</p>}>
-        <WeatherWidget location={location} search="Kyiv" />
-      </Suspense>
+      <Suspense fallback={<p>Loading...</p>}>{!loading && !error && <WeatherWidget location={location} />}</Suspense>
     </Container>
   )
 }

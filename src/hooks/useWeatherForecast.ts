@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import type { Location, WeatherResponse } from '../types/common.ts'
 import { WEATHER_DEFAULT_DATA } from '../utils/constants.ts'
@@ -16,28 +16,28 @@ const getWeatherUrl = (location: Location, search?: string) => {
   return `${VITE_WEATHER_API}/${VITE_WEATHER_API_PATH}?${searchParams.toString()}`
 }
 
-export const useWeatherForecast = (location: Location, search?: string) => {
+export const useWeatherForecast = (location: Location) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [data, setData] = useState<WeatherResponse>(WEATHER_DEFAULT_DATA)
 
-  useEffect(() => {
-    const fetchWeatherForecast = async () => {
-      try {
-        const response = await fetch(getWeatherUrl(location, search))
-        const data = (await response.json()) as WeatherResponse
+  const fetchWeatherForecast = useCallback(async (location: Location, search?: string) => {
+    try {
+      const response = await fetch(getWeatherUrl(location, search))
+      const data = (await response.json()) as WeatherResponse
 
-        setData(data)
-      } catch (error) {
-        console.error(error)
-        setError(true)
-      } finally {
-        setLoading(false)
-      }
+      setData(data)
+    } catch (error) {
+      console.error(error)
+      setError(true)
+    } finally {
+      setLoading(false)
     }
+  }, [])
 
-    void fetchWeatherForecast()
-  }, [location, search])
+  useEffect(() => {
+    void fetchWeatherForecast(location)
+  }, [fetchWeatherForecast, location])
 
-  return { loading, error, data }
+  return { loading, error, data, refetch: fetchWeatherForecast }
 }
