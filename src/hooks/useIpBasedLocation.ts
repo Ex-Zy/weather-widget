@@ -12,7 +12,7 @@ export const useIpBasedLocation = () => {
 
   const fetchLocation = useCallback(async () => {
     try {
-      const response = await fetch('https://ipapi.co/json/')
+      const response = await fetch(import.meta.env.VITE_IP_API)
       const data = (await response.json()) as IpLocation
 
       setLocation({
