@@ -2,6 +2,16 @@
 
 A simple responsive weather widget that shows the current weather of the user's location or searched location.
 
+## Preview
+![Weather Widget](./preview.png)
+
+## Features
+- Adaptive widget layout for mobile and desktop.
+- Shows the current weather of the user's location.
+- Search for a location by city name or latitude and longitude or ip address.
+- Lazy loading of the weather widget.
+- Handles loading and error states.
+
 ## Installation
 
 ```bash
