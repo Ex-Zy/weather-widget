@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import type React from 'react'
 
 import { WeatherDay } from './WeatherDay.tsx'
@@ -10,16 +10,7 @@ interface Props {
 
 export const WeatherMediumScreen: React.FC<Props> = ({ data }) => {
   return (
-    <Card
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        background: 'linear-gradient(to right, #0f0c29, #302b63, #24243e)',
-        borderRadius: 6,
-        boxShadow: 3,
-        py: 1,
-      }}
-    >
+    <>
       <CardContent>
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={3} sx={{ textAlign: 'center', alignItems: 'center' }}>
@@ -56,6 +47,6 @@ export const WeatherMediumScreen: React.FC<Props> = ({ data }) => {
           </Grid>
         </Grid>
       </CardContent>
-    </Card>
+    </>
   )
 }

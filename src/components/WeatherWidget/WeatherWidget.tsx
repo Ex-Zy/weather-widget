@@ -1,3 +1,4 @@
+import { Card } from '@mui/material'
 import type React from 'react'
 import { lazy } from 'react'
 
@@ -37,21 +38,33 @@ export const WeatherWidget: React.FC<Props> = ({ location }) => {
   return (
     <div className="widget">
       <SearchBar
+        sx={{ minWidth: 300 }}
         placeholder="Example: Kyiv or 50.1899,30.3141 or 176.98.23.132"
-        variant="filled"
+        variant="standard"
         label="Search by city, location, ip adress"
         type="search"
         value={value}
         onChange={onChange}
         onSubmit={handleSearch}
       />
-      {isLargeScreen ? (
-        <WeatherLargeScreen data={data} />
-      ) : isMediumScreen ? (
-        <WeatherMediumScreen data={data} />
-      ) : (
-        <WeatherSmallScreen data={data} />
-      )}
+      <Card
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          background: 'linear-gradient(to right, #0f0c29, #302b63, #24243e)',
+          borderRadius: 6,
+          boxShadow: 3,
+          py: 1,
+        }}
+      >
+        {isLargeScreen ? (
+          <WeatherLargeScreen data={data} />
+        ) : isMediumScreen ? (
+          <WeatherMediumScreen data={data} />
+        ) : (
+          <WeatherSmallScreen data={data} />
+        )}
+      </Card>
     </div>
   )
 }

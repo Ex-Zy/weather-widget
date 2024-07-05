@@ -1,4 +1,4 @@
-import { Card, CardActions, CardContent, CardHeader, CardMedia, Grid, Typography } from '@mui/material'
+import { CardActions, CardContent, CardHeader, CardMedia, Grid, Typography } from '@mui/material'
 import type React from 'react'
 
 import { WeatherDay } from './WeatherDay.tsx'
@@ -11,16 +11,7 @@ interface Props {
 
 export const WeatherLargeScreen: React.FC<Props> = ({ data }) => {
   return (
-    <Card
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        background: 'linear-gradient(to right, #0f0c29, #302b63, #24243e)',
-        borderRadius: 6,
-        boxShadow: 3,
-        py: 1,
-      }}
-    >
+    <>
       <CardHeader
         title={formatDate(data.location.localtime)}
         sx={{ textAlign: 'center', color: 'white' }}
@@ -76,6 +67,6 @@ export const WeatherLargeScreen: React.FC<Props> = ({ data }) => {
           })}
         </Grid>
       </CardActions>
-    </Card>
+    </>
   )
 }
