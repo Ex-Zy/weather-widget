@@ -105,3 +105,5 @@ export const WEATHER_DEFAULT_DATA = {
     ],
   },
 }
+
+export const LOCATION_DEFAULT_DATA = { lat: 0, lon: 0 }
