@@ -1,11 +1,9 @@
 import { Card } from '@mui/material'
-import type React from 'react'
 import { lazy } from 'react'
 
 import { useBreakPoints } from '../../hooks/useBreakPoints.ts'
-import { useInput } from '../../hooks/useInput.ts'
-import { useWeatherForecast } from '../../hooks/useWeatherForecast.ts'
-import type { Location } from '../../types/common.ts'
+import { useSearch } from '../../hooks/useSearch.ts'
+import { useWeatherWidget } from '../../hooks/useWeatherWidget.ts'
 import { Loader } from '../Loader.tsx'
 
 const SearchBar = lazy(() => import('../SearchBar.tsx').then((module) => ({ default: module.SearchBar })))
@@ -19,22 +17,15 @@ const WeatherSmallScreen = lazy(() =>
   import('./WeatherSmallScreen.tsx').then((module) => ({ default: module.WeatherSmallScreen }))
 )
 
-interface Props {
-  location: Location
-}
-
-export const WeatherWidget: React.FC<Props> = ({ location }) => {
-  const { loading, error, data, refetch } = useWeatherForecast(location)
-
-  const { value, onChange } = useInput('')
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    void refetch(location, value)
-  }
+export const WeatherWidget = () => {
+  const { value, tempValue, onChange, onSubmit } = useSearch('')
+  const { data, isLoading } = useWeatherWidget({ query: tempValue })
 
   const { isLargeScreen, isMediumScreen } = useBreakPoints()
 
-  if (error || loading) return <Loader />
+  if (isLoading || !data) {
+    return <Loader />
+  }
 
   return (
     <div className="widget">
@@ -44,9 +35,10 @@ export const WeatherWidget: React.FC<Props> = ({ location }) => {
         variant="standard"
         label="Search by city, location, ip adress"
         type="search"
+        name="search"
         value={value}
         onChange={onChange}
-        onSubmit={handleSearch}
+        onSubmit={onSubmit}
       />
       <Card
         sx={{
